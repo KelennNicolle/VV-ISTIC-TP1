@@ -36,6 +36,14 @@ Netflix is famous, among other things, for the popularization of *Chaos Engineer
 
 ## Answer 3
 
+Netflix performs the following experiments as part of their *Chaos Engineering* practice :
+- Terminate virtual machines instances;
+- Inject latency into requests between services;
+- Fail requests between services;
+- Fail an internal service.
+
+One of the primary requirements is that the experiments should not have a strong inpact on the quality of the real service. The primary variable they observe to quantify the impact of their experiments is the SPS - (stream) starts per seconds. Netflix is not the only company that practices Chaos Engineering, LinkedIn, Microsoft, Google, most of the major tech companies use it. Another domain where Chaos Engineering would be useful is for public transportation systems, notably, metro systems. Experimenting (or simulating) different failures could help identify major weaknesses in the said system, and prevent it from being unavailable for weeks.
+
 ---
 
 ## Question 4
@@ -44,6 +52,11 @@ Netflix is famous, among other things, for the popularization of *Chaos Engineer
 
 ## Answer 4
 
+According to the research paper, having a formal specification is an advantage to have a complete, yet concise formal semantics of both execution and validation, including a proof of soundness. It also demonstrates
+the "real world" feasibility of the approach, and it also leads to a clean design.
+
+While the it has a formal specification, there could still be issues in its potential implementations, and as such, it should in our opinions be tested.
+
 ---
 
 ## Question 5
@@ -51,3 +64,5 @@ Netflix is famous, among other things, for the popularization of *Chaos Engineer
 Shortly after the appearance of WebAssembly another paper proposed a mechanized specification of the language using Isabelle. The paper can be consulted here: https://www.cl.cam.ac.uk/~caw77/papers/mechanising-and-verifying-the-webassembly-specification.pdf. This mechanized specification complements the first formalization attempt from the paper. According to the author of this second paper, what are the main advantages of the mechanized specification? Did it help improving the original formal specification of the language? What other artifacts were derived from this mechanized specification? How did the author verify the specification? Does this new specification removes the need for testing?
 
 ## Answer 5
+
+The main advantages of the mechanized specification is that it preserves 'Eyeball closeness' (a line to line correspondance between the specification and the mechanisation), meaning the specification already include a definition in formal notation. By what was mentioned previously, this new specification improves the original one. An artefact resulting from this work, the author produced a fully mechanised proof of both soundness properties. No, the new specification, while being closer to the implementation (thanks to the Eyeball closeness), still requires to have a tested implementation.

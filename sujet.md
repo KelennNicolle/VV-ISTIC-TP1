@@ -1,8 +1,26 @@
 # Practical Session #1: Introduction
 
+---
+
 1. Find in news sources a general public article reporting the discovery of a software bug. Describe the bug. If possible, say whether the bug is local or global and describe the failure that manifested its presence. Explain the repercussions of the bug for clients/consumers and the company or entity behind the faulty program. Speculate whether, in your opinion, testing the right scenario would have helped to discover the fault.
 
+We found a famous bug, described in an [article from *National Geographic*, written by *Morgan Stanley*](https://education.nationalgeographic.org/resource/Y2K-bug/), called the 'Y2K bug'. Before the year 2000, software programmers often used two digits to store the information about the year (as to save the other two there were assumed to always be '19'). This eventually became problematic as the year 2000 approached, since this assumption would stop being true.
+
+This bug was pretty global, as the practice to hard-code the '19' part of the date was wide spread in the world.
+
+Thankfully, the failure was pretty benign. In most cases, the bug manifested in dates showing up as being 100 years before the actual date. In one case though, it lead the information system of a nuclear powerplant in Japan to fail (the system was not properly sending information to a centralized server) due to the bug, but it too was quickly resolved.
+
+The repercussions were overall small. In most cases, it lead to incorrect dates on information screens and other devices, and that, until the software were updated to store the date using four digits.
+
+The problem could have been avoided easily. The year 2000 came with no surprise, and software programmers had years to prepare for this eventuality, and adapat their programs to store dates appropriately.
+
+---
+
 2. Apache Commons projects are known for the quality of their code and development practices. They use dedicated issue tracking systems to discuss and follow the evolution of bugs and new features. The following link https://issues.apache.org/jira/projects/COLLECTIONS/issues/COLLECTIONS-794?filter=doneissues points to the issues considered as solved for the Apache Commons Collections project. Among those issues find one that corresponds to a bug that has been solved. Classify the bug as local or global. Explain the bug and the solution. Did the contributors of the project add new tests to ensure that the bug is detected if it reappears in the future?
+
+The bug [COLLECTIONS-799](https://issues.apache.org/jira/projects/COLLECTIONS/issues/COLLECTIONS-799?filter=doneissues) was a bug raised on September 7th, 2021. This bug was related to `UnmodifiableNavigableSet` objects, where, `pollFirst()` and `pollLast()` methods could be executed without throwing any exception. These two methods were inherited from a parent class, so the fix simply consisted in overriding the methods, and throwing `UnsupportedOperationException` exceptions if they were called. The contributor that made the changes also thought to implement tests, in order to guarantee that there would not be regressions in the future leading to the return of this bug. The issue was local, as it was a programming error located in a precise area of the code-base.
+
+---
 
 3. Netflix is famous, among other things we love, for the popularization of *Chaos Engineering*, a fault-tolerance verification technique. The company has implemented protocols to test their entire system in production by simulating faults such as a server shutdown. During these experiments they evaluate the system's capabilities of delivering content under different conditions. The technique was described in [a paper](https://arxiv.org/ftp/arxiv/papers/1702/1702.05843.pdf) published in 2016. Read the paper and briefly explain what are the concrete experiments they perform, what are the requirements for these experiments, what are the variables they observe and what are the main results they obtained. Is Netflix the only company performing these experiments? Speculate how these experiments could be carried in other organizations in terms of the kind of experiment that could be performed and the system variables to observe during the experiments.
 
